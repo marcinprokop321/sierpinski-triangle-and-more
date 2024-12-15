@@ -9,4 +9,4 @@ points = 5
 
 ![screenshot](5.png)
 
-Program uses OpenGL glad and WinApi
+Program uses OpenGL glad, glm, glfw and WinApi
