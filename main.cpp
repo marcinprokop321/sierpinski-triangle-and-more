@@ -16,7 +16,7 @@ typedef struct
 
 int main()
 {
-	int points = 3;
+	int points = 5;
 	double factor1 = 1, factor2 = 2;
 	glm::vec3 col = { 1.0f,0.0f,0.0f };
 	GLFWwindow* win = createWin();
@@ -36,24 +36,22 @@ int main()
 	dot current = { 1,1 };
 	std::vector<unsigned int> dots;
 	glfwSwapInterval(0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glUseProgram(shader);
 	for (int i = 0; i < 1000000; i++)
 	{
 		_rdrand16_step(&rand1);
+		unsigned int vbo = 0;
 		dot acLine = { (current.x + fabs(current.x - circleDots[rand1 % points].x) * factor)-1.l,(current.y + fabs(current.y - circleDots[rand1 % points].y) * factor) - 1.l };
 		current = acLine;
-		unsigned int xp = genLine({ (acLine.x - 0.0008)  ,(acLine.y )  ,(acLine.x )  ,(acLine.y )  }, { 1.0f,1.0f,1.0f }, { 1.0f,1.0f,1.0f });
-		dots.push_back(xp);
+		unsigned int xp = genLine({ (acLine.x - 0.0008)  ,(acLine.y )  ,(acLine.x )  ,(acLine.y )  }, { 1.0f,1.0f,1.0f }, { 1.0f,1.0f,1.0f },&vbo);
+		renderLine(xp, shader);
+		glDeleteVertexArrays(1, &xp);
+		glDeleteBuffers(1, &vbo);
 	}
-	while (!glfwWindowShouldClose(win))
-	{
-		glClear(GL_COLOR_BUFFER_BIT);
+	glfwSwapBuffers(win);
+	while (!glfwWindowShouldClose(win)) {
 		glfwPollEvents();
-		glUseProgram(shader);
-		
-		//renderGrid(grid, shader);
-		for (int i = 0; i < dots.size(); i++)
-			renderLine(dots[i],shader);
-		glfwSwapBuffers(win);
 	}
 	ExitProcess(0);
 }

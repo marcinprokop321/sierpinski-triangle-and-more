@@ -24,4 +24,4 @@ void renderLine(unsigned int lin, unsigned int shader);
 int setup(GLFWwindow* win);
 unsigned int setupGrid(glm::vec3 color);
 void renderGrid(unsigned int data, unsigned int shader);
-unsigned int genLine(glm::vec4 lin, glm::vec3 col1, glm::vec3 col2);
+unsigned int genLine(glm::vec4 lin, glm::vec3 col1, glm::vec3 col2,unsigned int *vbo);

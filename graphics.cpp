@@ -64,7 +64,7 @@ void renderGrid(unsigned int data, unsigned int shader)
 	glDrawArrays(GL_LINES, 0, 128);
 }
 
-unsigned int genLine(glm::vec4 lin, glm::vec3 col1, glm::vec3 col2)
+unsigned int genLine(glm::vec4 lin, glm::vec3 col1, glm::vec3 col2, unsigned int *vbo)
 {
 	float* data = (float*)malloc(10*sizeof(float));
 	data[0] = lin.x;
@@ -91,5 +91,6 @@ unsigned int genLine(glm::vec4 lin, glm::vec3 col1, glm::vec3 col2)
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2*sizeof(float)));
 	glEnableVertexAttribArray(1);
 	free(data);
+	*vbo = VBO;
 	return VAO;
 }
