@@ -1,5 +1,5 @@
 Program that creates geometric figures like Sierpinski triangle\
-Changing points variable in main.cpp (line 19) to other than 3, program can create other figures like Sierpinski triangle
+Changing points variable in main.cpp (line 19), program can create other figures like Sierpinski triangle
 
 points = 3
 
